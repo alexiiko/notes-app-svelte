@@ -1,3 +1,5 @@
+<!-- todo: count words of note and characters of note !-->
+
 <main>
     <textarea cols="30" rows="10"></textarea>
 </main>

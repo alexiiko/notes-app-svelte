@@ -5,27 +5,41 @@
 
   function addNote()
   {
-    let key: number = notesList.length + 1
-    notesList = [...notesList, { key }]
+    notesList = [...notesList, notesList.length + 1]
   }
 
-  function deleteLastNote()
+  function deleteNote(index: number)
   {
-    notesList.pop()
+    notesList.splice(index, 1)
+    notesList = [...notesList]
   }
 </script>
 
 
-<main>
-  <div>
-    <button on:click={addNote}>Add note</button>
-    <button on:click={deleteLastNote}>Delete last note</button>
+<div class="center">
+  <button on:click={addNote}>Add note</button>
+</div>
+
+{#each notesList as note, index (note)}
+  <div class="note center">
+    <button class="delete-button" on:click={() => deleteNote(index)}>&#128465</button>
+    <Note />
   </div>
+{/each}       
 
-  {#each notesList as {key}}
-    <div>
-      <Note />
-    </div>
-  {/each}       
-</main>
 
+<style>
+  .note {
+    display: flex;
+    align-items: center;
+  }
+
+  .delete-button {
+    margin-right: 8px;
+  }
+
+  .center {
+    display: flex;
+    justify-content: center;
+  }
+</style>
